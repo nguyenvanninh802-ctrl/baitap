@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách người dùng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    li {
+      margin: 10px 0;
+    }
+    input {
+      margin: 0 5px;
+      padding: 5px;
+    }
+    button {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Danh sách người dùng</h2>
+  <button onclick="loadUsers()">Tải dữ liệu</button>
+  <ul id="userList"></ul>
+
+  <script>
+    let users = [];
+
+    function loadUsers() {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then(res => res.json())
+        .then(data => {
+          users = data;
+          renderUsers();
+        })
+        .catch(err => console.error("Lỗi:", err));
+    }
+
+    function renderUsers() {
+      const ul = document.getElementById("userList");
+      ul.innerHTML = "";
+      users.forEach((user, index) => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+          <input type="text" value="${user.name}" id="name-${index}" readonly>
+          <input type="text" value="${user.email}" id="email-${index}" readonly>
+          <button onclick="editUser(${index})">Sửa</button>
+          <button onclick="saveUser(${index})">Lưu</button>
+        `;
+        ul.appendChild(li);
+      });
+    }
+
+    function editUser(i) {
+      document.getElementById(`name-${i}`).removeAttribute("readonly");
+      document.getElementById(`email-${i}`).removeAttribute("readonly");
+    }
+
+    function saveUser(i) {
+      const nameInput = document.getElementById(`name-${i}`);
+      const emailInput = document.getElementById(`email-${i}`);
+      users[i].name = nameInput.value;
+      users[i].email = emailInput.value;
+
+      nameInput.setAttribute("readonly", true);
+      emailInput.setAttribute("readonly", true);
+
+      console.log("Cập nhật user:", users[i]);
+      alert("Lưu thành công!");
+    }
+  </script>
+</body>
+</html>
