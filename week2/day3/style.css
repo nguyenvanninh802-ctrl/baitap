@@ -1,0 +1,85 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f5f6fa;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 30%;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2 {
+  padding: 15px;
+  font-size: 18px;
+  background: #007bff;
+  color: white;
+}
+
+#customerList {
+  list-style: none;
+}
+
+#customerList li {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#customerList li:hover {
+  background: #f0f8ff;
+}
+
+#customerList li.active {
+  background: #cce5ff;
+}
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+.booking {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.booking:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.booking h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.booking pre {
+  white-space: pre-line;
+  color: #555;
+}
